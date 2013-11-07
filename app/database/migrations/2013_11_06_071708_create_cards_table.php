@@ -25,8 +25,10 @@ class CreateCardsTable extends Migration {
 
 			$table->integer('class')->unsigned()->nullable();
 			$table->integer('type')->unsigned();
-			$table->integer('rarity')->unsigned();
+			$table->integer('rarity')->unsigned()->nullable();
 			$table->integer('race')->unsigned()->nullable();
+
+			$table->integer('pwn_id')->unsigned();
 
 			//$table->enum('class', array('basic', 'druid', 'hunter', 'mage', 'paladin', 'priest', 'rogue', 'shaman', 'warlock', 'warrior'));
 			//$table->enum('type', array('spell', 'weapon', 'minion'));

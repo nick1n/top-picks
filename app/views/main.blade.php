@@ -78,13 +78,7 @@
 				<pre><code>
 					<?php
 
-$doc = new DOMDocument();
-@$doc->loadHTMLFile("http://hearthpwn.com/cards");
-
-$tds = $doc->getElementsByTagName('td');
-foreach ($tds as $td) {
-	echo htmlspecialchars($doc->saveHTML($td)), PHP_EOL;
-}
+echo Card::seed();
 
 					?>
 				</code></pre>
