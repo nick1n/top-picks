@@ -26,7 +26,7 @@ class Card extends Eloquent {
 		$doc = new DOMDocument();
 
 		for ($display = 2; $display >= 1; --$display) {
-			for ($page = 1; $page <= 1; ++$page) {
+			for ($page = 1; $page <= 6; ++$page) {
 
 				// @$doc->loadHTMLFile("http://www.hearthpwn.com/cards?display=$display&page=$page");
 				@$doc->loadHTMLFile("cards$display$page.html");
