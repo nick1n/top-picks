@@ -65,14 +65,9 @@ class Card extends Eloquent {
 
 		if ($pwn_id) {
 			$pwn_id = $pwn_id->getAttribute('data-id');
+		}
 
-		} else {
-
-			echo 'Card pwn_id wasn\'t found';
-			var_dump($pwn_id);
-			var_dump($name);
-			var_dump($element);
-
+		if (!$pwn_id) {
 			return;
 		}
 
@@ -80,80 +75,12 @@ class Card extends Eloquent {
 		$card = Card::find(Card::where('pwn_id', $pwn_id)->first()['id']);
 
 		if (!$card) {
-
-			echo 'Card wasn\'t found';
-			var_dump($pwn_id);
-			var_dump($name);
-			var_dump($element);
-
+			echo "$pwn_id - $name card wasn't found";
 			return;
 		}
 
 		// Card's mana
 		$item = 3;
-		if (!$columns->item($item)) {
-			return;
-		}
-
-		$card->mana = trim($columns->item($item)->textContent);
-
-		// Card's attack
-		++$item;
-		if (!$columns->item($item)) {
-			return;
-		}
-
-		$card->attack = trim($columns->item($item)->textContent);
-
-		// Card's health
-		++$item;
-		if (!$columns->item($item)) {
-			return;
-		}
-
-		$card->health = trim($columns->item($item)->textContent);
-
-		$card->save();
-	}
-
-	public static function parseListingOld($element) {
-		$item = 0;
-		$columns = $element->getElementsByTagName('td');
-
-		$card = new Card;
-
-		// Card's name
-		if (!$columns->item($item)) {
-			return;
-		}
-
-		$card->name = trim($columns->item($item)->textContent);
-
-		// Card's pwn_id
-		$pwn_id = $columns->item($item)->getElementsByTagName('a')->item(0);
-
-		if ($pwn_id) {
-			$card->pwn_id = $pwn_id->getAttribute('data-id');
-		}
-
-		// Card's Type
-		++$item;
-		if (!$columns->item($item)) {
-			return;
-		}
-
-		$card->type = Type::getId(trim($columns->item($item)->textContent));
-
-		// Card's Class
-		++$item;
-		if (!$columns->item($item)) {
-			return;
-		}
-
-		$card->class = Classification::getId(trim($columns->item($item)->textContent));
-
-		// Card's mana
-		++$item;
 		if (!$columns->item($item)) {
 			return;
 		}
@@ -221,25 +148,27 @@ class Card extends Eloquent {
 
 			if ($result) {
 
+				$name = trim($list->lastChild->textContent);
+
 				// Card's Type
 				if ($result[0] == 'Type') {
 
-					$card->type = Type::getId(trim($list->lastChild->textContent));
+					$card->type = Type::getId($name);
 
 				// Card's Class
 				} else if ($result[0] == 'Class') {
 
-					$card->class = Classification::getId(trim($list->lastChild->textContent));
+					$card->class = Classification::getId($name);
 
 				// Card's Rarity
 				} else if ($result[0] == 'Rarity') {
 
-					$card->rarity = Rarity::getId(trim($list->lastChild->textContent));
+					$card->rarity = Rarity::getId($name);
 
 				// Card's Race
 				} else if ($result[0] == 'Race') {
 
-					$card->race = Race::getId(trim($list->lastChild->textContent));
+					$card->race = Race::getId($name);
 
 				}
 			}
