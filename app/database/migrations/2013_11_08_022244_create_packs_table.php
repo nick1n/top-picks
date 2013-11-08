@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlayersTable extends Migration {
+class CreatePacksTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,10 +11,10 @@ class CreatePlayersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('players', function($table) {
+		Schema::create('packs', function($table) {
 			$table->increments('id');
 
-			$table->string('name');
+			$table->integer('arena')->unsigned();
 		});
 	}
 
@@ -25,7 +25,7 @@ class CreatePlayersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('players');
+		Schema::drop('packs');
 	}
 
 }

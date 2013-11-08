@@ -1,0 +1,30 @@
+
+/* card's numbers */
+.badge.mana {
+	background-color: #46a;
+	color: #fff;
+}
+
+.badge.attack {
+	background-color: #da1;
+	color: #fff;
+}
+
+.badge.health {
+	background-color: #d52;
+	color: #fff;
+}
+
+/* select2's dropdown */
+.select2-results {
+	max-height: 260px;
+}
+
+/* form stuff */
+.radio label {
+	display: block;
+}
+
+hr {
+	margin-top: 7px;
+}

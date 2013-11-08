@@ -15,3 +15,7 @@ Route::get('/', function()
 {
 	return View::make('main');
 });
+
+Route::get('cards/{any}', function($name) {
+	return Card::where('name', 'like', "%$name%")->get();
+});

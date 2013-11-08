@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('RaceTableSeeder');
 		$this->call('RarityTableSeeder');
 		$this->call('TypeTableSeeder');
-		// $this->call('CardTableSeeder');
+		$this->call('PlayerTableSeeder');
+		$this->call('CardTableSeeder');
 	}
 
 }

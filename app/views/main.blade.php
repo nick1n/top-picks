@@ -13,6 +13,9 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/select2.css" rel="stylesheet">
+		<link href="css/select2-bootstrap.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
 
@@ -75,13 +78,12 @@
 				<p>
 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
 				</p>
-				<pre><code>
-					<?php
+			</div>
 
-echo Card::seed();
-
-					?>
-				</code></pre>
+			<div class="row">
+				<div class="col-md-10">
+					@include('subview.arena')
+				</div>
 			</div>
 
 		</div> <!-- /container -->
@@ -91,6 +93,8 @@ echo Card::seed();
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="../../dist/js/bootstrap.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/select2.min.js"></script>
+		<script src="js/app.js"></script>
 	</body>
 </html>
