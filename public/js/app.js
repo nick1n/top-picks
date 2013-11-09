@@ -1,18 +1,28 @@
 $(function() {
 
+	var templates = {
+		result: Handlebars.compile($('#result-template').html()),
+		selection: Handlebars.compile($('#selection-template').html()),
+	};
+
 	$('input.card').select2({
 		placeholder: 'Search for a card',
 		minimumInputLength: 1,
-		// dropdownCssClass: 'bigdrop', // apply css that makes the dropdown taller
+		formatResult: templates.result,
+		formatSelection: templates.selection,
 
-		ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+		// we do not want to escape markup since we are displaying html in results and selection
+		escapeMarkup: function(html) {
+			return html;
+		},
+
+		ajax: {
+			cache: true,
+			dataType: 'json',
+
 			url: function(term) {
 				return 'cards/' + term;
 			},
-
-			cache: true,
-
-			dataType: 'json',
 
 			results: function(data) {
 				return {
@@ -21,6 +31,7 @@ $(function() {
 			}
 		},
 
+		// TODO: do we need this?
 		initSelection: function(element, callback) {
 			// the input tag has a value attribute preloaded that points to a preselected movie's id
 			// this function resolves that id attribute to an object that select2 can render
@@ -33,35 +44,6 @@ $(function() {
 					cache: true
 				}).done(callback);
 			}
-		},
-
-		formatResult: function(card) {
-			var html =
-				'<div>' +
-					'<span class="badge mana">' + card.mana + '</span> ' +
-				'</div>' +
-				'<div>' +
-					'<strong>' +
-						card.name +
-					'</strong>' +
-				'</div>' +
-				'<div>' +
-					card.text +
-				'</div>' +
-				'<div>' +
-					'<span class="badge attack">' + card.attack + '</span> <span class="badge health">' + card.health + '</span>' +
-				'</div>';
-
-			return html;
-		},
-
-		formatSelection: function(card) {
-			return '<span class="badge mana">' + card.mana + '</span> ' + card.name;
-		},
-
-		// we do not want to escape markup since we are displaying html in results
-		escapeMarkup: function(html) {
-			return html;
 		}
 	});
 

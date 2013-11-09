@@ -16,6 +16,9 @@ Route::get('/', function()
 	return View::make('main');
 });
 
+// TODO: filter by class
 Route::get('cards/{any}', function($name) {
 	return Card::where('name', 'like', "%$name%")->get();
 });
+
+Route::resource('arena', 'ArenaController');

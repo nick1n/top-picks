@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -9,20 +8,13 @@
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-		<title>Navbar Template for Bootstrap</title>
+		<title>Top Picks</title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/select2.css" rel="stylesheet">
 		<link href="css/select2-bootstrap.css" rel="stylesheet">
 		<link href="css/app.css" rel="stylesheet">
-
-		<!-- Custom styles for this template -->
-
-		<!-- Just for debugging purposes. Don't actually copy this line! -->
-		<!--[if lt IE 9]>
-			<script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script>
-		<![endif]-->
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -43,7 +35,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Project name</a>
+					<a class="navbar-brand" href="#">Top Picks</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
@@ -71,15 +63,6 @@
 				</div><!--/.nav-collapse -->
 			</div>
 
-			<!-- Main component for a primary marketing message or call to action -->
-			<div class="jumbotron">
-				<h1>Navbar example</h1>
-				<p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-				<p>
-					<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-				</p>
-			</div>
-
 			<div class="row">
 				<div class="col-md-10">
 					@include('subview.arena')
@@ -88,13 +71,18 @@
 
 		</div> <!-- /container -->
 
+		<!-- Templates -->
+		@include('handlebars.result-template')
+		@include('handlebars.selection-template')
 
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/select2.min.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/select2.js"></script>
+		<script src="js/handlebars.js"></script>
 		<script src="js/app.js"></script>
+
 	</body>
 </html>
