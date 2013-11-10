@@ -30,24 +30,21 @@ class Arena extends Eloquent {
 
 		for ($index = 0; $index < 30; ++$index) {
 
-			$pack = new Pack;
-
-			$pack->arena = $arena->id;
-
-			$pack->save();
-
-
 			for ($card = 0; $card < 3; ++$card) {
 
-				$card_pack = new CardPack;
+				$pack = new Pack;
 
-				$card_pack->pack = $pack->id;
+				$pack->arena = $arena->id;
 
-				$card_pack->card = Input::get("card-$index-$card");
+				$pack->pack = $index;
 
-				$card_pack->pick = Input::get("pick-$index") == $card;
+				$pack->card = Input::get("card-$index-$card");
 
-				$card_pack->save();
+				if (Input::get("pick-$index") == $card) {
+					$pack->pick = 1;
+				}
+
+				$pack->save();
 
 			}
 

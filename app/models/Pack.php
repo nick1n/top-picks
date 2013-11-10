@@ -7,11 +7,7 @@ class Pack extends Eloquent {
 
 	// Relationships
 	public function cards() {
-		return $this->belongsToMany('Card', 'card_pack', 'card', 'pack');
-	}
-
-	public function cardPack() {
-		return $this->hasMany('CardPack', 'pack');
+		return $this->belongsTo('Card', 'card');
 	}
 
 	public function arena() {
@@ -23,13 +19,18 @@ class Pack extends Eloquent {
 
 	// returns the picked card id
 	public function pickId() {
-		// return CardPack::wherePicked('pack', $this->id)->first()['id'];
-		return CardPack::wherePicked('pack', $this->id)->pluck('id');
+		return self::wherePicked('pack', $this->pack)->pluck('card');
 	}
 
 	// returns the picked card model
 	public function pick() {
 		return Card::find($this->pickId());
+	}
+
+
+	// Query Where Clauses
+	public static function wherePicked($where, $id) {
+		return self::where($where, $id)->where('pick', 1);
 	}
 
 }

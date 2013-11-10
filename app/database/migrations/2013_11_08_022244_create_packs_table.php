@@ -15,6 +15,12 @@ class CreatePacksTable extends Migration {
 			$table->increments('id');
 
 			$table->integer('arena')->unsigned();
+			$table->integer('pack')->unsigned();
+			$table->integer('card')->unsigned();
+
+			// 1 = card was picked
+			// -1 = card wasn't picked
+			$table->integer('pick')->default(-1);
 		});
 	}
 

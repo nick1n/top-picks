@@ -75,7 +75,7 @@
 	<div class="col-sm-5">
 		<div class="form-group">
 			<label for="card">Golden Card</label>
-			<input type='hidden' class="card form-control" name="card" id="card">
+			<input type='hidden' data-filter="false" class="card form-control" name="card" id="card">
 		</div>
 	</div>
 </div>

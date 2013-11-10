@@ -28,15 +28,11 @@ class Card extends Eloquent {
 	}
 
 	public function packs() {
-		return $this->belongsToMany('Pack', 'card_pack', 'pack', 'card');
-	}
-
-	public function cardPack() {
-		return $this->hasMany('CardPack', 'card');
+		return $this->hasMany('Pack', 'card');
 	}
 
 	public function arenas() {
-		return $this->hasMany('Arena', 'card');
+		return $this->belongsToMany('Arena', 'packs', 'arena', 'card');
 	}
 
 
@@ -58,6 +54,25 @@ class Card extends Eloquent {
 
 	// returns amount of times this card was picked
 	public function picked() {
-		return CardPack::wherePicked('card', $this->id)->count();
+		return Pack::wherePicked('card', $this->id)->count();
+	}
+
+	public static function getCards($name, $class = null) {
+		$query = self::where('name', 'like', "%$name%");
+
+		// if a class was passed in filter by it or base cards (null)
+		if ($class) {
+
+			$query = $query->where(function($query) use($class) {
+
+				$query
+					->where('class', $class)
+					->orWhereNull('class');
+
+			});
+
+		}
+
+		return $query->get();
 	}
 }

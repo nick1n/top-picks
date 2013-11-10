@@ -1,13 +1,15 @@
 $(function() {
 
 	var templates = {
-		result: Handlebars.compile($('#result-template').html()),
-		selection: Handlebars.compile($('#selection-template').html()),
-	};
+			result: Handlebars.compile($('#result-template').html()),
+			selection: Handlebars.compile($('#selection-template').html()),
+		};
 
 	$('input.card').select2({
 		placeholder: 'Search for a card',
 		minimumInputLength: 1,
+		allowClear: true,
+
 		formatResult: templates.result,
 		formatSelection: templates.selection,
 
@@ -20,8 +22,10 @@ $(function() {
 			cache: true,
 			dataType: 'json',
 
+			// search for a cards name and filter by the class if there is a class field on screen and the input doesn't have data-filter set to false
 			url: function(term) {
-				return 'cards/' + term;
+				var $class = $('#class');
+				return 'cards/' + term + ($class.val() && this.data('filter') !== false ? '/' + $class.val() : '');
 			},
 
 			results: function(data) {
@@ -38,6 +42,7 @@ $(function() {
 			// using its formatResult renderer - that way the movie name is shown preselected
 			var value = $(element).val();
 
+			// TODO: this value is the card's id and not its name
 			if (value) {
 				$.ajax('cards/' + value, {
 					dataType: 'json',
