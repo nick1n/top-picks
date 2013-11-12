@@ -35,3 +35,9 @@
 hr {
 	margin-top: 7px;
 }
+
+/* bootstrap changes */
+input[type="radio"],
+input[type="checkbox"] {
+	cursor: pointer;
+}

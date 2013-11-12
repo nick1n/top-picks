@@ -17,6 +17,11 @@ Route::get('/', function()
 });
 
 // filter by card name
+Route::get('card/{id}', function($id) {
+	return Card::find($id);
+});
+
+// filter by card name
 Route::get('cards/{name}', function($name) {
 	return Card::getCards($name);
 });

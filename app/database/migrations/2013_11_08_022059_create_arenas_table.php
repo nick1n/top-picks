@@ -28,7 +28,8 @@ class CreateArenasTable extends Migration {
 			$table->integer('gold');
 			$table->integer('dust');
 			$table->integer('packs')->default(1);
-			$table->integer('card')->unsigned()->nullable();
+			$table->integer('card0')->unsigned()->nullable();
+			$table->integer('card1')->unsigned()->nullable();
 		});
 	}
 

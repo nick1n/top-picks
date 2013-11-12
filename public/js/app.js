@@ -5,6 +5,20 @@ $(function() {
 			selection: Handlebars.compile($('#selection-template').html()),
 		};
 
+
+	$('form').on('submit', function(event) {
+		var $this = $(this);
+
+		event.preventDefault();
+
+		$.post($this.data('action'), $this.serialize())
+		.done(function() {
+			console.log(arguments);
+		});
+	});
+
+	$('.btn-group').button();
+
 	$('input.card').select2({
 		placeholder: 'Search for a card',
 		minimumInputLength: 1,
@@ -44,7 +58,7 @@ $(function() {
 
 			// TODO: this value is the card's id and not its name
 			if (value) {
-				$.ajax('cards/' + value, {
+				$.ajax('card/' + value, {
 					dataType: 'json',
 					cache: true
 				}).done(callback);

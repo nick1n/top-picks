@@ -19,11 +19,13 @@ class Arena extends Eloquent {
 
 	// Custom Functions
 	public static function store() {
-		$array = Input::only('player', 'info', 'class', 'real', 'wins', 'loses', 'gold', 'dust', 'packs', 'card');
+		$array = Input::only('player', 'info', 'class', 'real', 'wins', 'loses', 'gold', 'dust', 'packs', 'card0', 'card1');
 
-		$array['real'] = $array['real'] == 'on';
+		$array['real'] = $array['real'] == 'on' ? 1 : 0;
 
-		$array['card'] = $array['card'] ?: null;
+		$array['card0'] = $array['card0'] ?: null;
+
+		$array['card1'] = $array['card1'] ?: null;
 
 		$arena = Arena::create($array);
 

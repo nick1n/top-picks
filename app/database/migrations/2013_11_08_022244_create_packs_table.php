@@ -15,7 +15,12 @@ class CreatePacksTable extends Migration {
 			$table->increments('id');
 
 			$table->integer('arena')->unsigned();
+
+			// when an arena gets deleted all packs associated with that arena also get deleted
+			$table->foreign('arena')->references('id')->on('arenas')->onDelete('cascade');
+
 			$table->integer('pack')->unsigned();
+
 			$table->integer('card')->unsigned();
 
 			// 1 = card was picked
