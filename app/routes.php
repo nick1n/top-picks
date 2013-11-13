@@ -31,4 +31,8 @@ Route::get('cards/{name}/{class}', function($name, $class) {
 	return Card::getCards($name, $class);
 });
 
+Route::get('mana', function() {
+	return View::make('part.table')->with('array', Card::getMana());
+});
+
 Route::resource('arena', 'ArenaController');

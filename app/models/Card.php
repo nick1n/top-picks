@@ -75,4 +75,18 @@ class Card extends Eloquent {
 
 		return $query->get();
 	}
+
+	public static function getMana() {
+		return DB::table('cards')
+			->select(DB::raw('(attack + health) / mana AS efficiency, cards.*'))
+			->where('type', 3)
+			->orderBy(DB::raw('(attack + health) / mana DESC, mana DESC, attack + health DESC, attack'), 'DESC')
+			->get();
+
+		// Raw SQL:
+		// SELECT (attack + health) / mana AS efficiency, cards.*
+		// FROM cards
+		// WHERE type = 3
+		// ORDER BY (attack + health) / mana DESC, mana DESC, attack + health DESC, attack DESC
+	}
 }
